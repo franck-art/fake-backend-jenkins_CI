@@ -36,5 +36,4 @@ volumes:
   mysql_data:
 networks:
   network_game:    
-    driver: bridge
     name: network_game
