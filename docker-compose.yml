@@ -34,5 +34,6 @@ services:
 volumes:
   mysql_data:
 networks:
-  network_game:
-
+  default:
+    external:
+      name: network_game
