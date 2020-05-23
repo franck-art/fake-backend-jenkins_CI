@@ -34,6 +34,6 @@ services:
 volumes:
   mysql_data:
 networks:
-  default:
-    external:
-      name: network_game
+  network_game:    
+    driver: bridge
+    name: network_game
