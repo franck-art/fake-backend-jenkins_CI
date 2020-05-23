@@ -1,0 +1,37 @@
+version: '3.7'
+services:
+  dbgame:
+
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpwdgame
+      MYSQL_DATABASE: battleboat
+      MYSQL_USER: battleuser
+      MYSQL_PASSWORD: battlepass
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - network_game
+  
+  battlegame:
+    image: fake-backend-jenkins
+    depends_on:
+      - dbgame
+    ports:
+      - 3000:3000
+    environment:
+      DATABASE_HOST: dbgame
+      DATABASE_PORT: 3306
+      DATABASE_USER: battleuser
+      DATABASE_PASSWORD: battlepass
+      DATABASE_NAME: battleboat
+    volumes:
+      - ${WORKSPACE}/battleboat:/etc/backend/static
+    networks:
+      - network_game
+
+volumes:
+  mysql_data:
+networks:
+  network_game:
+
