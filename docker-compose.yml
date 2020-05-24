@@ -18,7 +18,7 @@ services:
     container_name: battlegame
     image: fake-backend-jenkins
     volumes:
-      - {WORKSPACE}/battleboat:/etc/backend/static
+      - ./battleboat:/etc/backend/static
     depends_on:
       - dbgame
     ports:
